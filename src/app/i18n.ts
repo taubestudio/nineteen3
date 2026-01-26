@@ -1,5 +1,7 @@
 export const locales = ['sv', 'en'] as const;
 export type Locale = (typeof locales)[number];
+export const isLocale = (value: string): value is Locale =>
+  (locales as readonly string[]).includes(value);
 
 type ProjectItem = {
   text: string;
@@ -504,5 +506,5 @@ export function getDictionary(locale: Locale) {
 
 export function getLocaleFromPathname(pathname: string): Locale {
   const segment = pathname.split('/')[1];
-  return (locales as readonly string[]).includes(segment) ? (segment as Locale) : 'sv';
+  return isLocale(segment) ? segment : 'sv';
 }

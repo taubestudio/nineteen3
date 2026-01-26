@@ -2,7 +2,7 @@ import Header from '../components/Header';
 import Mobileheader from '../components/Mobileheader';
 import Footer from '../components/Footer';
 import '../globals.css';
-import { locales, type Locale } from '../i18n';
+import { locales, isLocale, type Locale } from '../i18n';
 
 export const metadata = {
   title: 'Nineteen Production',
@@ -13,14 +13,14 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const locale: Locale = isLocale(params.locale) ? params.locale : 'sv';
 
   return (
     <html lang={locale}>

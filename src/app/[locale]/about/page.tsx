@@ -1,4 +1,4 @@
-import { getDictionary, type Locale } from '../../i18n';
+import { getDictionary, isLocale, type Locale } from '../../i18n';
 
 const aboutImages = {
   first: 'https://pub-3635b466c9684646a3ba1cf1ed544c70.r2.dev/IMG_6158.jpg',
@@ -6,12 +6,12 @@ const aboutImages = {
   third: 'https://pub-3635b466c9684646a3ba1cf1ed544c70.r2.dev/IMG_6163.jpg',
 };
 
-export default async function AboutPage({
+export default function AboutPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const locale: Locale = isLocale(params.locale) ? params.locale : 'sv';
   const dictionary = getDictionary(locale);
   const { about } = dictionary;
 
