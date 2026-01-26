@@ -1,11 +1,12 @@
 import { getDictionary, isLocale, type Locale } from '../../i18n';
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale: Locale = isLocale(params.locale) ? params.locale : 'sv';
+  const { locale: rawLocale } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : 'sv';
   const dictionary = getDictionary(locale);
 
   return (

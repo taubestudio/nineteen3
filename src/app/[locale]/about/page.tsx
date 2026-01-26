@@ -6,12 +6,13 @@ const aboutImages = {
   third: 'https://pub-3635b466c9684646a3ba1cf1ed544c70.r2.dev/IMG_6163.jpg',
 };
 
-export default function AboutPage({
+export default async function AboutPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale: Locale = isLocale(params.locale) ? params.locale : 'sv';
+  const { locale: rawLocale } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : 'sv';
   const dictionary = getDictionary(locale);
   const { about } = dictionary;
 
