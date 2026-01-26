@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import { getDictionary, type Locale } from '../i18n';
 
-export default function HomePage({ params }: { params: { locale: Locale } }) {
-  const { locale } = params;
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
   const dictionary = getDictionary(locale);
   const basePath = `/${locale}`;
 

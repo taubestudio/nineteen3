@@ -1,8 +1,13 @@
 import ContactForm from '../../components/ContactForm';
 import { getDictionary, type Locale } from '../../i18n';
 
-export default function ContactPage({ params }: { params: { locale: Locale } }) {
-  const dictionary = getDictionary(params.locale);
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const dictionary = getDictionary(locale);
   const addressLines = dictionary.contact.address.split('\n');
 
   return (

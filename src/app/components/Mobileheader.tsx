@@ -48,15 +48,15 @@ export default function Mobileheader() {
 
         <div>
           <li className={`header-item ${isActive('/sv') ? 'active' : ''}`}>
-            <a href="/sv" rel="noopener noreferrer">
+            <Link href="/sv">
               <span>SE</span>
-            </a>
+            </Link>
           </li>
           <li>/</li>
           <li className={`header-item ${isActive('/en') ? 'active' : ''}`}>
-            <a href="/en" rel="noopener noreferrer">
+            <Link href="/en">
               <span>EN</span>
-            </a>
+            </Link>
           </li>
         </div>
 

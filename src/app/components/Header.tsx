@@ -47,17 +47,17 @@ export default function Header() {
             </a>
           </li>
           <div>
-          <li className={`header-item ${isActive('/sv') ? 'active' : ''}`}>
-            <a href="/sv" rel="noopener noreferrer">
-              <span>SE</span>
-            </a>
-          </li>
-          <li>/</li>
-          <li className={`header-item ${isActive('/en') ? 'active' : ''}`}>
-            <a href="/en" rel="noopener noreferrer">
-              <span>EN</span>
-            </a>
-          </li>
+            <li className={`header-item ${isActive('/sv') ? 'active' : ''}`}>
+              <Link href="/sv">
+                <span>SE</span>
+              </Link>
+            </li>
+            <li>/</li>
+            <li className={`header-item ${isActive('/en') ? 'active' : ''}`}>
+              <Link href="/en">
+                <span>EN</span>
+              </Link>
+            </li>
           </div>
         </ul>
       </div>
