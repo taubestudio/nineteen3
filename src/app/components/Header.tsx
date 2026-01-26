@@ -3,32 +3,35 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { getDictionary, getLocaleFromPathname } from '../i18n';
 
 export default function Header() {
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const dictionary = getDictionary(locale);
+  const basePath = `/${locale}`;
 
   const isActive = (path: string) => pathname.startsWith(path);
 
   return (
     <header>
-      <Link href="/">
+      <Link href={basePath}>
         <Image src="/nineteen-logo-black.svg" className="logo" alt="Logo" width={130} height={50} />
       </Link>
       <div>
         <nav>
           <ul>
-            <li className={`header-item ${isActive('/sv/projekt') ? 'active' : ''}`}>
-              <Link href="/sv/projekt" replace>Projekt</Link>
+            <li className={`header-item ${isActive(`${basePath}/projekt`) ? 'active' : ''}`}>
+              <Link href={`${basePath}/projekt`} replace>{dictionary.nav.projects}</Link>
             </li>
-            <li className={`header-item ${isActive('/sv/techniques') ? 'active' : ''}`}>
-              <Link href="/sv/techniques" replace>Trycktekniker</Link>
+            <li className={`header-item ${isActive(`${basePath}/techniques`) ? 'active' : ''}`}>
+              <Link href={`${basePath}/techniques`} replace>{dictionary.nav.techniques}</Link>
             </li>
-            <li className={`header-item ${isActive('/sv/about') ? 'active' : ''}`}>
-              <Link href="/sv/about" replace>Om Oss</Link>
+            <li className={`header-item ${isActive(`${basePath}/about`) ? 'active' : ''}`}>
+              <Link href={`${basePath}/about`} replace>{dictionary.nav.about}</Link>
             </li>
-            <li className={`header-item ${isActive('/sv/contact') ? 'active' : ''}`}>
-              <Link href="/sv/contact" replace>Kontakt</Link>
+            <li className={`header-item ${isActive(`${basePath}/contact`) ? 'active' : ''}`}>
+              <Link href={`${basePath}/contact`} replace>{dictionary.nav.contact}</Link>
             </li>
           </ul>
         </nav>

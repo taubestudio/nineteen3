@@ -1,23 +1,31 @@
-// src/app/layout.tsx
-import Header from '../components/HeaderEnglish';
-import Mobileheader from '../components/MobileheaderEnglish';
+import Header from '../components/Header';
+import Mobileheader from '../components/Mobileheader';
 import Footer from '../components/Footer';
 import '../globals.css';
+import { locales, type Locale } from '../i18n';
 
 export const metadata = {
   title: 'Nineteen Production',
   description: 'Welcome to Nineteen Production',
 };
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { locale: Locale };
 }) {
+  const { locale } = params;
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
-      <link rel="icon" href="https://nineteenstudent.se/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="https://nineteenstudent.se/favicon.ico" type="image/x-icon" />
       </head>
       <body>
         <Header />
@@ -26,6 +34,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-    
   );
 }

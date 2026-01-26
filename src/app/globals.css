@@ -1,6 +1,11 @@
+html,
 body{
   margin: 0;
-  font-family: Gilroy;
+  font-family: Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  background-color: #ffffff;
+  color: #000000;
+  color-scheme: light;
 }
 
 a{
@@ -11,11 +16,11 @@ a{
 }
 
 button{
-    text-transform: uppercase;
+    text-transform: lowercase;
     background-color: black;
     border: 0;
     padding: 12px;
-    font-family: Gilroy;
+    font-family: Helvetica, Arial, sans-serif;
     color: white;
     font-family: 14px;
     transition-property: background-color;
@@ -197,8 +202,8 @@ nav{
   position: absolute;
   background-color: white;
   border: 0;
-  font-family: gilroy;
-  text-transform: uppercase;
+  font-family: Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
   font-size: 14px;
   padding: 8px 32px 8px 32px;
   white-space: nowrap;
@@ -315,7 +320,7 @@ nav{
   padding: 12px 12px 12px;
   box-sizing: border-box;
   color: black;
-  font-family: Gilroy;
+  font-family: Helvetica, Arial, sans-serif;
   border: 0;
   width: 100%;
   font-size: 14px;
@@ -327,7 +332,7 @@ nav{
 }
 
 #name{
-  text-transform: capitalize;
+  text-transform: lowercase;
 }
 
 .form-div input::placeholder,
@@ -336,11 +341,11 @@ nav{
 }
 
 .submit{
-  text-transform: uppercase;
+  text-transform: lowercase;
   background-color: black;
   border: 0;
   padding: 12px;
-  font-family: Gilroy;
+  font-family: Helvetica, Arial, sans-serif;
   color: white;
   font-size: 14px;
   transition-property: background-color;
@@ -562,15 +567,5 @@ footer{
 
 }
 
-/* src/app/globals.css */
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./fonts/Gilroy-Semibold.ttf') format('truetype');
-  font-weight: 600; /* Adjust as necessary */
-  font-style: normal;
-}
-
-
-
-
+ 
 

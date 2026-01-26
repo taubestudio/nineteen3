@@ -1,8 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import type { ContactFormLabels } from '../i18n';
 
-export default function ContactForm() {
+type ContactFormProps = {
+  labels: ContactFormLabels;
+};
+
+export default function ContactForm({ labels }: ContactFormProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -30,7 +35,7 @@ export default function ContactForm() {
       setIsSubmitting(false); // Reset the submitting state
       setTimeout(() => setFormSubmitted(false), 3000); // Reset button text after 3 seconds
     } else {
-      alert("Error sending message. Please try again.");
+      alert(labels.errorMessage);
     }
     
     setIsSubmitting(false);
@@ -43,7 +48,7 @@ export default function ContactForm() {
           type="text"
           name="name"
           id="name"
-          placeholder='Namn'
+          placeholder={labels.namePlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -52,7 +57,7 @@ export default function ContactForm() {
       <div className='form-div'>
         <input
           type="email"
-          placeholder='E-post'
+          placeholder={labels.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -61,7 +66,7 @@ export default function ContactForm() {
       <div className='form-div'>
         <input
           type="tel"
-          placeholder='Telefon'
+          placeholder={labels.phonePlaceholder}
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
@@ -72,7 +77,7 @@ export default function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
-          placeholder='Meddelande'
+          placeholder={labels.messagePlaceholder}
         />
       </div>
       
@@ -81,7 +86,11 @@ export default function ContactForm() {
         className='submit'
         disabled={isSubmitting || formSubmitted}
       >
-        {formSubmitted ? 'Skickat' : isSubmitting ? 'Skickar...' : 'Skicka'}
+        {formSubmitted
+          ? labels.submitted
+          : isSubmitting
+            ? labels.submitting
+            : labels.submit}
       </button>
     </form>
   );

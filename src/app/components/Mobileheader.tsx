@@ -4,12 +4,16 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { getDictionary, getLocaleFromPathname } from '../i18n';
 
 export default function Mobileheader() {
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const dictionary = getDictionary(locale);
+  const basePath = `/${locale}`;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname.startsWith(path);
 
   // Funktion för att visa/gömma menyn
   const toggleMenu = () => {
@@ -38,7 +42,7 @@ export default function Mobileheader() {
           <line y1="16.5" x2="25" y2="16.5" stroke="black"/>
         </svg>
 
-        <Link href="/">
+        <Link href={basePath}>
           <Image src="/nineteen-logo-black.svg" className="logo" alt="Logo" width={100} height={50} />
         </Link>
 
@@ -59,17 +63,17 @@ export default function Mobileheader() {
         <div className={`menu ${isMenuOpen ? 'show-menu' : 'hide-menu'}`}>
           <nav>
             <ul>
-              <li className={`header-item ${isActive('/sv/projekt') ? 'active' : ''}`}>
-                <Link href="/sv/projekt" replace onClick={closeMenu}>Projekt</Link>
+              <li className={`header-item ${isActive(`${basePath}/projekt`) ? 'active' : ''}`}>
+                <Link href={`${basePath}/projekt`} replace onClick={closeMenu}>{dictionary.nav.projects}</Link>
               </li>
-              <li className={`header-item ${isActive('/sv/techniques') ? 'active' : ''}`}>
-                <Link href="/sv/techniques" replace onClick={closeMenu}>Trycktekniker</Link>
+              <li className={`header-item ${isActive(`${basePath}/techniques`) ? 'active' : ''}`}>
+                <Link href={`${basePath}/techniques`} replace onClick={closeMenu}>{dictionary.nav.techniques}</Link>
               </li>
-              <li className={`header-item ${isActive('/sv/about') ? 'active' : ''}`}>
-                <Link href="/sv/about" replace onClick={closeMenu}>Om Oss</Link>
+              <li className={`header-item ${isActive(`${basePath}/about`) ? 'active' : ''}`}>
+                <Link href={`${basePath}/about`} replace onClick={closeMenu}>{dictionary.nav.about}</Link>
               </li>
-              <li className={`header-item ${isActive('/sv/contact') ? 'active' : ''}`}>
-                <Link href="/sv/contact" replace onClick={closeMenu}>Kontakt</Link>
+              <li className={`header-item ${isActive(`${basePath}/contact`) ? 'active' : ''}`}>
+                <Link href={`${basePath}/contact`} replace onClick={closeMenu}>{dictionary.nav.contact}</Link>
               </li>
             </ul>
           </nav>
